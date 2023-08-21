@@ -1,0 +1,44 @@
+﻿@model PropertyRentalManagementWs.Models.PotentialTenant
+
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="row">
+
+        <h3>Insert either you admin, manager o proprietary(owner) credentials if it is your case.</h3>
+        <div class="col-md-4">
+            <form asp-action="Login" asp-controller="Home" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                    <input type="submit" value="Cancel" onclick="location.href='@Url.Action("Index","Home")'" class="btn btn-primary" />
+                </div>
+            </form>
+ 
+        </div>
+    </div>
+</body>
+</html>

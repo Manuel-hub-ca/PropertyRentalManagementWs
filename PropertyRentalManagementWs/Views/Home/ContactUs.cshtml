@@ -1,0 +1,29 @@
+﻿@model SendMailDto
+@{
+    ViewData["Title"] = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewBag.Message</h1>
+<h1>@ViewBag.Error</h1>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Email"></label>
+        <input type="text" asp-for="@Model.Email" class="form-control" palceholder="Enter your name" />
+        <span class="text-danger" asp-validation-for="@Model.Email"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Subject"></label>
+        <input type="text" asp-for="@Model.Subject" class="form-control" palceholder="Enter your subject" />
+        <span class="text-danger" asp-validation-for="@Model.Subject"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Body"></label>
+        <textarea type="text" class="form-control" asp-for="@Model.Body" palceholder="Enter your message"></textarea>
+        <span class="text-danger" asp-validation-for="@Model.Body"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Mail</button>
+</form>
+

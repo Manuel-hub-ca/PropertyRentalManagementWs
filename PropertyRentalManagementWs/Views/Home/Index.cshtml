@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PropertyRentalManagementWs.Models.Apartment>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+<body>
+    <h2>PropertyRentalManagementWebSite</h2>
+    <div class="Signup-Login" style="width:150px;position:absolute;right:320px;">
+        <input type="submit" value="Signup" onclick="location.href='@Url.Action("Signup","Home")'" class="btn btn-primary" />
+        <input type="submit" value="Login" onclick="location.href='@Url.Action("Login","Home")'" class="btn btn-primary" />
+    </div>
+
+    <div>
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <label for="searchingString"> Search by partial price:</label>
+                <input type="text" name="rentPrice" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </div>
+    </form>
+
+    </div>
+    
+    <div class="MyBody">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><img src=@Html.DisplayFor(modelItem => item.Img1) /></div>
+                        <div class="swiper-slide"><img src=@Html.DisplayFor(modelItem => item.Img2) /></div>
+                        <div class="swiper-slide"><img src=@Html.DisplayFor(modelItem => item.Img3) /></div>
+                    </div>
+
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
+                <div class="description">
+                    <h4>Entire House Hosted by Jimmy</h4>
+                    @Html.DisplayFor(modelItem => item.NumberOfRooms) &nbsp&#8226;&nbsp  @Html.DisplayFor(modelItem => item.RentPrice) &nbsp&#8226;&nbsp @Html.DisplayFor(modelItem => item.Status) <br />
+                    Montreal-Nord<br />
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            //autoplay:{
+            //    delay:3000,
+            //    disableOnInteraction: false,
+            //},
+            loop: true,
+
+
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable:true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>
